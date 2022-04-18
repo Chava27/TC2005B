@@ -15,7 +15,10 @@ app.use('/css', express.static('./css'))
 function connectToDB()
 {
     try{
-        return mysql.createConnection({host:'localhost', user:'hagen', password:'M4sqls3rv3r.', database:'api_game_db'});
+        return mysql.createConnection({host:'localhost', 
+        user:'perc_user', 
+        password:'Isla_22$', 
+        database: 'api_game_db'});
     }
     catch(error)
     {

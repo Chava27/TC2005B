@@ -19,8 +19,8 @@ const words = await getRandomWord(10)
 const connection = mysql.createConnection(
     {
         host:'localhost', 
-        user:'hagen', 
-        password:'M4sqls3rv3r.', 
+        user:'perc_user', 
+        password:'Isla_22$', 
         database: 'api_game_db'
     })
 
@@ -61,7 +61,7 @@ for(const w of words)
     })
 }
 
-for(let i = 0; i<20; i++)
+/*for(let i = 0; i<20; i++)
 {
     const user_id = Math.floor(Math.random() * 20)+1
     const level_id = Math.floor(Math.random() * 10)+1
@@ -81,6 +81,7 @@ for(let i = 0; i<20; i++)
         console.log(`Added attempt successfully!`)
     })
 }
+*/
 
 connection.end(error=>
     {
