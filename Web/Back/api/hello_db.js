@@ -7,8 +7,8 @@ import mysql from 'mysql'
 const connection = mysql.createConnection(
     {
         host:'localhost', 
-        user:'hagen', 
-        password:'M4sqls3rv3r.', 
+        user:'perc_user', 
+        password:'Isla_22$', 
         database: 'api_game_db'
     })
 
