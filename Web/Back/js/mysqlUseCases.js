@@ -1,3 +1,5 @@
+//Se debe de usar nuevo script para cada html?????
+
 function main()
 {
     formSelect.onsubmit = async (e) =>{
