@@ -3,6 +3,7 @@
 import express from 'express'
 import mysql from 'mysql'
 import fs from 'fs'
+import { request } from 'http';
 
 const app = express();
 const port = 5000;
@@ -16,9 +17,9 @@ function connectToDB()
 {
     try{
         return mysql.createConnection({host:'localhost', 
-        user:'perc_user', 
-        password:'Isla_22$', 
-        database: 'api_game_db'});
+        user:'final_admin', 
+        password:'Destiny2', 
+        database: 'percussion_island2'});
     }
     catch(error)
     {
@@ -27,21 +28,39 @@ function connectToDB()
 }
 
 app.get('/', (request,response)=>{
-    fs.readFile('./html/mysqlUseCases.html', 'utf8', (err, html)=>{
+    //aqui iba la direcciona gameUsers.html
+    fs.readFile('./html/home.html', 'utf8', (err, html)=>{
         if(err) response.status(500).send('There was an error: ' + err);
         console.log('Loading page...');
         response.send(html);
     })
 });
 
-app.get('/api/users', (request, response)=>{
+app.get('/game_user', (request,response)=>{
+    //aqui iba la direcciona gameUsers.html
+    fs.readFile('./html/gameUsers.html', 'utf8', (err, html)=>{
+        if(err) response.status(500).send('There was an error: ' + err);
+        console.log('Loading page...');
+        response.send(html);
+    })
+});
+
+app.get('/questions', (request,respone)=>{
+    fs.readFile('./html/questions.html', 'utf8', (err, html)=>{
+        if(err) respone.status(500).send('There was an error: ' + err);
+        console.log("Loading page...");
+        respone.send(html)
+    })
+});
+
+app.get('/api/game_user', (request, response)=>{
     let connection = connectToDB();
 
     try{
 
         connection.connect();
 
-        connection.query('select * from users', (error, results, fields)=>{
+        connection.query('select * from game_user', (error, results, fields)=>{
             if(error) console.log(error);
             console.log(JSON.stringify(results));
             response.json(results);
@@ -56,7 +75,7 @@ app.get('/api/users', (request, response)=>{
     }
 });
 
-app.post('/api/users', (request, response)=>{
+app.post('/api/game_user', (request, response)=>{
 
     try{
         console.log(request.headers);
@@ -64,7 +83,7 @@ app.post('/api/users', (request, response)=>{
         let connection = connectToDB();
         connection.connect();
 
-        const query = connection.query('insert into users set ?', request.body ,(error, results, fields)=>{
+        const query = connection.query('insert into game_user set ?', request.body ,(error, results, fields)=>{
             if(error) 
                 console.log(error);
             else
@@ -80,12 +99,12 @@ app.post('/api/users', (request, response)=>{
     }
 });
 
-app.put('/api/users', (request, response)=>{
+app.put('/api/game_user', (request, response)=>{
     try{
         let connection = connectToDB();
         connection.connect();
 
-        const query = connection.query('update users set name = ?, surname = ? where id_users= ?', [request.body['name'], request.body['surname'], request.body['userID']] ,(error, results, fields)=>{
+        const query = connection.query('update game_user set user_name = ?, email = ? where user_id= ?', [request.body['user_name'], request.body['email'], request.body['user_id']] ,(error, results, fields)=>{
             if(error) 
                 console.log(error);
             else
@@ -101,13 +120,13 @@ app.put('/api/users', (request, response)=>{
     }
 });
 
-app.delete('/api/users', (request, response)=>{
+app.delete('/api/game_user', (request, response)=>{
     try
     {
         let connection = connectToDB();
         connection.connect();
 
-        const query = connection.query('delete from users where id_users= ?', [request.body['userID']] ,(error, results, fields)=>{
+        const query = connection.query('delete from game_user where user_id= ?', [request.body['userID']] ,(error, results, fields)=>{
             if(error) 
                 console.log(error);
             else

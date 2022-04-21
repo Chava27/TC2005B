@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/mysqlUseCases.css">
     <script type="module" defer src="../js/mysqlUseCases.js"></script>
-    <title>Game_Users</title>
+    <title>Questions</title>
 </head>
 <body>
     <div class="section">
@@ -25,10 +25,9 @@
     <div class="section">
         <div class="formInput">
             <h1>Add Trivia Question</h1>
-            <form id="formInsert" method="post" action="http://localhost:5000/api/users">
+            <form id="formInsert" method="post" action="http://localhost:5000/api/questions">
                 <input type="text" name="user_name" placeholder="Type your first name">
                 <input type="text" name="email" placeholder="Type your email">
-                <!--La fecha debe de ser ingresada???-->
                 <input type="text" name="date_joined" placeholder="Type date date_joined"> 
                 <input type="submit" value="Add Game-User">
             </form>
